@@ -11,4 +11,4 @@ Fill the login form with your email and any random password.
 
 # Check out the live version:
 
-Check out the app running live at - https://https://fiber-editor.vercel.app
+Check out the app running live at - [https://fiber-editor.vercel.app](https://fiber-editor.vercel.app)
