@@ -10,6 +10,7 @@ import { editorApi } from '../../api/editor-api';
 import { AddNewPageButton } from './new-page-button';
 import { PageDataType } from '../editor/types';
 import { PageStatus } from '../../types/common';
+import { getUrl } from '../../utils/common';
 
 export const LandingPages: FC = () => {
   const [filteredStatus, setFilteredStatus] = useState<PageStatus>();
@@ -139,7 +140,7 @@ export const LandingPages: FC = () => {
                       <p className='font-medium mt-2'>{page.name}</p>
                       <div className='flex flex-1' />
                       <p className='underline'>
-                        <span>{page.url}</span>
+                        <span>{getUrl(page.id || "")}</span>
                         <span className='ml-1'><ExternalLink size={12} className='inline' /></span>
                       </p>
                     </div>
