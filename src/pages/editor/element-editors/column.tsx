@@ -27,7 +27,7 @@ export const ColumnEditor: FC<ElementEditorProps<Column>> = ({ data, onChange })
     <>
       <p className='font-semibold flex items-center p-4 border-b border-light-5 text-base'>
         <ColumnsIcon size={16} />
-        <span className='ml-1.5'>Edit {"Column"}</span>
+        <span className='ml-1.5 text-xl'>Edit {"Column"}</span>
       </p>
       <div className='px-4'>
         <div className='border-b border-contrast-8 py-4'>

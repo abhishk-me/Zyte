@@ -148,22 +148,22 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
                 _section.layout.children.push(section.layout.children[section.layout.children.length - 1]);
                 onChange(_section, [sectionIndex, section.layout.children.length])
               }}
-              className='mt-4 h-10 bg-light-3'
+              className='mt-4 h-10'
             >Add Column</Button>
           }
-          <div className='px-1 mt-16 text-sm border-t border-b border-light-5'>
-            <label htmlFor='SECTION_STYLE_TOGGLE' className='py-4 flex items-center cursor-pointer opacity-60'>
+          <div className='p-3 pb-2 mt-16 text-sm border border-light-5 rounded-xl'>
+            <label htmlFor='SECTION_STYLE_TOGGLE' className='pt-1 pb-2 flex items-center cursor-pointer opacity-60'>
               <svg viewBox="0 0 256 256" height={16}><rect fill="none" height="256" width="256" /><path d="M225,23c-21.3,0-45.3,11.8-71.1,34.9-18.1,16.2-33.6,34.7-44.3,48.7A60.1,60.1,0,0,0,32,164c0,31.2-16.2,45.1-17,45.8a7.7,7.7,0,0,0-2.5,8.8A7.8,7.8,0,0,0,20,224H92a60.1,60.1,0,0,0,57.4-77.6c14-10.7,32.5-26.2,48.7-44.3C221.2,76.3,233,52.3,233,31A8,8,0,0,0,225,23ZM124.4,113.6c2.9-3.7,6.3-7.9,10.2-12.5a75.4,75.4,0,0,1,20.3,20.3c-4.6,3.9-8.8,7.3-12.5,10.2A59.4,59.4,0,0,0,124.4,113.6Zm42.6-2.9A93.1,93.1,0,0,0,145.3,89c19.6-21.2,46-44.4,70.8-49.1C211.4,64.7,188.2,91.1,167,110.7Z" fill='#fff' /></svg>
               <span className='font-semibold text-sm flex flex-1 pl-1.5'>Section Styles</span>
               <Plus size={14} />
             </label>
             <input id='SECTION_STYLE_TOGGLE' type='checkbox' className='hidden h-0 w-0 peer' />
-            <div className='hidden peer-checked:block pb-4'>
+            <div className='hidden peer-checked:block pt-4'>
               <ContainerType
                 value={styles.containerType || "FULL_WIDTH"}
                 onChange={(containerType) => updateStyles({ containerType })}
               />
-              <SliderWithInput
+              {section.layout.props.type === LayoutType.COLUMNS && <SliderWithInput
                 min={0}
                 max={160}
                 step={1}
@@ -178,7 +178,7 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
                   }
                 }, selectedElementId)}
                 label='Gap'
-              />
+              />}
               <ColorSelect
                 value={styles.background}
                 onSelect={(background) => updateStyles({ background })}

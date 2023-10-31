@@ -11,13 +11,12 @@ import { AddNewPageButton } from './new-page-button';
 import { PageDataType } from '../editor/types';
 import { PageStatus } from '../../types/common';
 
-export const Dashboard: FC = () => {
+export const LandingPages: FC = () => {
   const [filteredStatus, setFilteredStatus] = useState<PageStatus>();
   const [view, setView] = useState<"GRID" | "LIST">("GRID")
   const user = useSelector((state: IState) => state.authReducer.user);
   const [selectedPage, setSelectedPage] = useState<PageDataType>();
   const [pages, setPages] = useState<PageDataType[]>([]);
-
 
   const { query: getPages, loading: fetchingPages } = useQuery(editorApi.getPages, {
     onSuccess: ({ data }) => {
@@ -104,7 +103,7 @@ export const Dashboard: FC = () => {
             }
             {!fetchingPages && filteredPages.map((page, index) => {
               return view === "GRID" ? (
-                <div className='p-3 w-1/3'>
+                <div className='p-3 w-1/3' key={index}>
                   <div
                     onClick={() => setSelectedPage(page)}
                     className='rounded-2xl shadow-md hover:shadow-xl transition-shadow  p-2 bg-white overflow-hidden group cursor-pointer'

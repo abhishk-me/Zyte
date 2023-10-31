@@ -1,6 +1,7 @@
 import { Input, Popover } from 'antd';
 import React, { FC, useEffect, useState } from 'react';
 import { useDebounce } from '../../utils/use-debounce';
+import { nanoid } from 'nanoid';
 
 interface Props {
   value?: string;
@@ -19,6 +20,7 @@ export const ColorSelect: FC<Props> = ({ value, onSelect, label }) => {
       <p className='w-20 opacity-60 font-medium'>{label}</p>
       <div className='flex flex-1'>
         <Popover
+          destroyTooltipOnHide
           content={<div className='w-60 p-1'>
             <div className='flex flex-row items-center flex-wrap'>
               {["#000000", "#ffffff", ""].map((color, idx) => (

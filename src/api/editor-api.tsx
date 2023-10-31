@@ -1,6 +1,7 @@
 import { ApiResponse } from 'apisauce';
 import { apiGateway } from './api-config';
 import { PageDataType } from '../pages/editor/types';
+import { AnalyticsDataType } from '../types/common';
 
 export type SendOtpResponse = { success: boolean, data?: { otp: string } }
 
@@ -43,6 +44,10 @@ export const editorApi = {
 
   async getPages(): Promise<ApiResponse<PageDataType[]>> {
     return apiGateway.get('/pages');
+  },
+
+  async getAnalyticsData(): Promise<ApiResponse<AnalyticsDataType[]>> {
+    return apiGateway.get('/analytics');
   },
 
   async getPage({

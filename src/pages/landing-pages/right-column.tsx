@@ -51,7 +51,7 @@ export const RightColumn: FC<Props> = ({ page, onClose, onChange }) => {
             <div className='px-2 py-3'>
               <p className='mb-2 opacity-60'>Page URL</p>
               <p onClick={() => window.open(getUrl(page.id || ""), '_blank')} className='underline break-words hover:text-accent2 cursor-pointer'>
-                <span>{page.url}</span>
+                <span>{getUrl(page.id || "")}</span>
                 <span className='ml-1'><ExternalLink size={12} className='inline' /></span>
               </p>
             </div>

@@ -3,6 +3,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { CustomInputNumber } from './input-number';
 import { SegmentedTab } from '../segmented';
 import { useDebounce } from '../../utils/use-debounce';
+import { nanoid } from 'nanoid';
 
 interface Props {
   width: number[];

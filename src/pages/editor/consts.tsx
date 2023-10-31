@@ -245,8 +245,8 @@ export const sectionTemplates: SectionTemplate[] = [
                 "props": {
                   "type": "Base",
                   "image": {
-                    "id": "https://tusd.tusdemo.net/files/f305226b3450dd4a676b97010862a75d+VsEut0HQQ.BO17Pjr1V7z2TdUTGA0XohZYvEACF.7SMIJCAy3WostNh1Hjf5Xy1VkMDLJjGCYLZCWSWc5MTuxtf8UEBTsd8zriFKnL9Eh.3Jxd3xjWXf2fN7LR79XNlp",
-                    "url": "https://tusd.tusdemo.net/files/f305226b3450dd4a676b97010862a75d+VsEut0HQQ.BO17Pjr1V7z2TdUTGA0XohZYvEACF.7SMIJCAy3WostNh1Hjf5Xy1VkMDLJjGCYLZCWSWc5MTuxtf8UEBTsd8zriFKnL9Eh.3Jxd3xjWXf2fN7LR79XNlp",
+                    "id": "23456",
+                    "url": "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=3580&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                     "meta": {}
                   },
                   "styles": {
@@ -319,8 +319,8 @@ export const sectionTemplates: SectionTemplate[] = [
                 "props": {
                   "type": "Base",
                   "image": {
-                    "id": "https://tusd.tusdemo.net/files/f305226b3450dd4a676b97010862a75d+VsEut0HQQ.BO17Pjr1V7z2TdUTGA0XohZYvEACF.7SMIJCAy3WostNh1Hjf5Xy1VkMDLJjGCYLZCWSWc5MTuxtf8UEBTsd8zriFKnL9Eh.3Jxd3xjWXf2fN7LR79XNlp",
-                    "url": "https://tusd.tusdemo.net/files/f305226b3450dd4a676b97010862a75d+VsEut0HQQ.BO17Pjr1V7z2TdUTGA0XohZYvEACF.7SMIJCAy3WostNh1Hjf5Xy1VkMDLJjGCYLZCWSWc5MTuxtf8UEBTsd8zriFKnL9Eh.3Jxd3xjWXf2fN7LR79XNlp",
+                    "id": "12345",
+                    "url": "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=3580&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                     "meta": {}
                   },
                   "styles": {
@@ -506,8 +506,8 @@ export const sectionTemplates: SectionTemplate[] = [
             "props": {
               "width": 1,
               "backgroundImage": {
-                "id": "https://tusd.tusdemo.net/files/fd62c177a4c05df1172ee575b936c570+_QbL7lQB_r468kmWMDU1.Tzy0wmN9pGDpvaaHP47mfGVB5U4Et7jHtukWHPdNggVgyMTCIcJUkhmrKYkL2y4ZJEmSBUDyNDg_t9_1GK548tZuIiguDLo9RbMe3iHtEa4",
-                "url": "https://tusd.tusdemo.net/files/fd62c177a4c05df1172ee575b936c570+_QbL7lQB_r468kmWMDU1.Tzy0wmN9pGDpvaaHP47mfGVB5U4Et7jHtukWHPdNggVgyMTCIcJUkhmrKYkL2y4ZJEmSBUDyNDg_t9_1GK548tZuIiguDLo9RbMe3iHtEa4",
+                "id": "34567",
+                "url": "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=3580&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                 "meta": {}
               }
             },
@@ -716,8 +716,8 @@ export const sectionTemplates: SectionTemplate[] = [
                 "props": {
                   "type": "Base",
                   "image": {
-                    "id": "https://tusd.tusdemo.net/files/fd62c177a4c05df1172ee575b936c570+_QbL7lQB_r468kmWMDU1.Tzy0wmN9pGDpvaaHP47mfGVB5U4Et7jHtukWHPdNggVgyMTCIcJUkhmrKYkL2y4ZJEmSBUDyNDg_t9_1GK548tZuIiguDLo9RbMe3iHtEa4",
-                    "url": "https://tusd.tusdemo.net/files/fd62c177a4c05df1172ee575b936c570+_QbL7lQB_r468kmWMDU1.Tzy0wmN9pGDpvaaHP47mfGVB5U4Et7jHtukWHPdNggVgyMTCIcJUkhmrKYkL2y4ZJEmSBUDyNDg_t9_1GK548tZuIiguDLo9RbMe3iHtEa4",
+                    "id": "45678",
+                    "url": "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=3580&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                     "meta": {}
                   },
                   "styles": {
@@ -737,8 +737,8 @@ export const sectionTemplates: SectionTemplate[] = [
                       0,
                       0
                     ],
-                    "height": 1,
-                    "heightType": "AUTO"
+                    "height": 2,
+                    "heightType": "RELATIVE"
                   }
                 },
                 "displayName": "Image"
@@ -1027,8 +1027,8 @@ export const sectionTemplates: SectionTemplate[] = [
                 "props": {
                   "type": "Base",
                   "image": {
-                    "id": "https://tusd.tusdemo.net/files/f305226b3450dd4a676b97010862a75d+VsEut0HQQ.BO17Pjr1V7z2TdUTGA0XohZYvEACF.7SMIJCAy3WostNh1Hjf5Xy1VkMDLJjGCYLZCWSWc5MTuxtf8UEBTsd8zriFKnL9Eh.3Jxd3xjWXf2fN7LR79XNlp",
-                    "url": "https://tusd.tusdemo.net/files/f305226b3450dd4a676b97010862a75d+VsEut0HQQ.BO17Pjr1V7z2TdUTGA0XohZYvEACF.7SMIJCAy3WostNh1Hjf5Xy1VkMDLJjGCYLZCWSWc5MTuxtf8UEBTsd8zriFKnL9Eh.3Jxd3xjWXf2fN7LR79XNlp",
+                    "id": "56789",
+                    "url": "https://images.unsplash.com/photo-1615529182904-14819c35db37?auto=format&fit=crop&q=80&w=3580&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
                     "meta": {}
                   },
                   "styles": {

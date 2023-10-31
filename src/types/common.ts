@@ -5,9 +5,18 @@ export enum PageStatus {
   ARCHIVED = "ARCHIVED"
 }
 
-export interface PageDataType {
+export interface AnalyticsDataType {
   id: string;
-  thumb: string;
-  displayName: string;
-  status: PageStatus
+  pageId: string;
+  createdAt: string;
+  event: PageEvent
+}
+
+export enum PageEvent {
+  CLICK = "CLICK",
+  PAGE_VIEW = "PAGE_VIEW"
+}
+
+export interface AnalyticsDataByPage {
+  [key: string]: AnalyticsDataType[]
 }
