@@ -50,7 +50,8 @@ export const AddNewPageButton: FC<Props> = () => {
 
   const generateSections = useCallback((noOfSections: number) => {
     let _sections: PageSection[] = [];
-    for (let i = 0; i < noOfSections; i++) {
+    _sections.push(sectionTemplates[0].section);
+    for (let i = 0; i < noOfSections - 1; i++) {
       const _section = sectionTemplates[Math.floor(Math.random() * 5)].section;
       _sections.push(_section);
     }

@@ -10,6 +10,7 @@ import { Border } from '../../../components/style-editors/border';
 import { ElementEditorProps, BaseElementProps, Elements, CommonStyles } from '../types';
 import { Type } from 'react-feather';
 
+// Editor for Text element 
 export const TextWidgetEditor: FC<ElementEditorProps<BaseElementProps>> = ({ data, onChange }) => {
   const { styles } = data;
   const updateStyles = (_styles: CommonStyles) => {

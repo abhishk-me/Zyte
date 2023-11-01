@@ -13,6 +13,7 @@ import { HeightWidth } from '../../../components/style-editors/height-width';
 import { ElementIconMap } from '../consts';
 import { Sliders } from 'react-feather';
 
+// Editor for button group. 
 export const ButtonWidgetEditor: FC<ElementEditorProps<ButtonGroupProps>> = ({ data, onChange }) => {
   const updateStyles = (_styles: ButtonElement, index: number) => {
     onChange({

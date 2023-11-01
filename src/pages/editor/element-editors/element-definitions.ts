@@ -5,6 +5,8 @@ import { TextWidgetEditor } from './text';
 import { ButtonWidgetEditor } from './buttons';
 import { EmptySpaceEditor } from './empty-space';
 
+
+// Element to editor mapping with defualt data
 export const elementDefinitions: ElementDefs[] = [
   {
     name: Elements.TEXT,

@@ -26,8 +26,11 @@ const SectionContext = React.createContext<{
   updateSection: (section: PageSection, selectedElementId: number[]) => void;
 }>({ selectedElementId: [], updateSection: () => { } });
 
+// editor for a section
 export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedElementId }) => {
   const sectionIndex = selectedElementId[0] || 0;
+
+  // drag and drop handler
   const handleDragEnd = (result: DropResult) => {
     const { type, source, destination } = result;
     if (!destination) return;
@@ -63,6 +66,7 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
     }
   };
 
+  // update section styles.
   const updateStyles = (_styles: CommonStyles) => {
     onChange({
       layout: {
@@ -118,6 +122,7 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
             />
           </div> */}
           <p className='mt-4 mb-3 font-medium px-1'>{section.layout.children.length > 1 && "Columns"}</p>
+          {/* pass down section data and update section method down the tree for easy access */}
           <SectionContext.Provider
             value={{
               section,
@@ -129,6 +134,7 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
               <Drop key={`${sectionIndex}`} id={`${sectionIndex}`} type='DROPPABLE_COLUMN'>
                 {section.layout.children.map((column, index) => {
                   return (
+                    // section renders columns inside
                     <ColumnCard
                       noOfColumns={section.layout.children.length}
                       column={column}
@@ -141,6 +147,7 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
               </Drop>
             </DragAndDrop>
           </SectionContext.Provider>
+          {/* button to add new column */}
           {section.layout.props.type === LayoutType.COLUMNS &&
             <Button
               onClick={() => {
@@ -151,6 +158,8 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
               className='mt-4 h-10'
             >Add Column</Button>
           }
+          <Button onClick={() => console.log(section)}>log</Button>
+          {/* Section style editors */}
           <div className='p-3 pb-2 mt-16 text-sm border border-light-5 rounded-xl'>
             <label htmlFor='SECTION_STYLE_TOGGLE' className='pt-1 pb-2 flex items-center cursor-pointer opacity-60'>
               <svg viewBox="0 0 256 256" height={16}><rect fill="none" height="256" width="256" /><path d="M225,23c-21.3,0-45.3,11.8-71.1,34.9-18.1,16.2-33.6,34.7-44.3,48.7A60.1,60.1,0,0,0,32,164c0,31.2-16.2,45.1-17,45.8a7.7,7.7,0,0,0-2.5,8.8A7.8,7.8,0,0,0,20,224H92a60.1,60.1,0,0,0,57.4-77.6c14-10.7,32.5-26.2,48.7-44.3C221.2,76.3,233,52.3,233,31A8,8,0,0,0,225,23ZM124.4,113.6c2.9-3.7,6.3-7.9,10.2-12.5a75.4,75.4,0,0,1,20.3,20.3c-4.6,3.9-8.8,7.3-12.5,10.2A59.4,59.4,0,0,0,124.4,113.6Zm42.6-2.9A93.1,93.1,0,0,0,145.3,89c19.6-21.2,46-44.4,70.8-49.1C211.4,64.7,188.2,91.1,167,110.7Z" fill='#fff' /></svg>
@@ -159,6 +168,7 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
             </label>
             <input id='SECTION_STYLE_TOGGLE' type='checkbox' className='hidden h-0 w-0 peer' />
             <div className='hidden peer-checked:block pt-4'>
+              {/* switches between containers widths - FULL or CONTAINED */}
               <ContainerType
                 value={styles.containerType || "FULL_WIDTH"}
                 onChange={(containerType) => updateStyles({ containerType })}
@@ -179,11 +189,13 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
                 }, selectedElementId)}
                 label='Gap'
               />}
+              {/* Section's background colour */}
               <ColorSelect
                 value={styles.background}
                 onSelect={(background) => updateStyles({ background })}
                 label='Fill'
               />
+              {/* Section' padding */}
               <Padding
                 values={styles.padding || [0, 0, 0, 0]}
                 onChange={(padding) => updateStyles({ padding })}
@@ -209,6 +221,7 @@ export const ColumnCard: FC<ColumnCardProps> = ({ column, columnIndex, sectionIn
   const context = useContext(SectionContext);
   const selected = arrayEquals(context.selectedElementId, [sectionIndex, columnIndex]);
 
+  // Renders text's value in case of text block and name of the element otherwise
   const renderLabel = useCallback((element: Element) => {
     if (element.name === Elements.TEXT) {
       const _props = element.props as BaseElementProps
@@ -217,6 +230,7 @@ export const ColumnCard: FC<ColumnCardProps> = ({ column, columnIndex, sectionIn
     return element.displayName || element.altName
   }, []);
 
+  // if an element inside the column is selected, it will be expanded by default
   useEffect(() => {
     if (!expanded && context.selectedElementId[1] === columnIndex) {
       setExpanded(true)
@@ -237,6 +251,7 @@ export const ColumnCard: FC<ColumnCardProps> = ({ column, columnIndex, sectionIn
           }}
           className={`flex items-center py-2 pl-3 pr-1 cursor-pointer rounded-xl group/column  ${selected ? 'bg-light-5' : 'hover:bg-light-5'}`}
         >
+          {/* column's name and a delete button if no of columns is more than one */}
           <p className={`flex flex-1 items-center ${selected ? 'text-accent' : ''}`}>
             {singleColumn ? <Square size={16} className='pt-0.5 opacity-60' /> : (
               <div>
@@ -273,11 +288,14 @@ export const ColumnCard: FC<ColumnCardProps> = ({ column, columnIndex, sectionIn
             {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
           </p>
         </div>
+        {/* renders list of elements inside the column */}
         {expanded &&
           <div className='px-3 pb-3'>
             <Drop key={`${sectionIndex}_${columnIndex}`} id={`${sectionIndex}_${columnIndex}`} type='DROPPABLE_ELEMENT'>
               {column.children.map((element, elementIndex) => {
+                // Id of the element
                 const elementId = [sectionIndex, columnIndex, elementIndex];
+                // checks if the element is selected
                 const elementSelected = arrayEquals(context.selectedElementId, elementId);
                 return (
                   <Drag
@@ -286,6 +304,7 @@ export const ColumnCard: FC<ColumnCardProps> = ({ column, columnIndex, sectionIn
                     key={elementIndex}
                   >
                     <div
+                      // select the element to open the editor on the right pan. it passes the element id. 
                       onClick={() => context.section && context.updateSection(context.section, elementId)}
                       className={`flex flex-row items-center mt-0.5 pr-2 pl-2 ml-4 cursor-pointer rounded-lg group overflow-hidden whitespace-nowrap ${elementSelected ? 'bg-light-5 text-accent' : 'hover:bg-light-5'}`}
                     >
@@ -296,6 +315,7 @@ export const ColumnCard: FC<ColumnCardProps> = ({ column, columnIndex, sectionIn
                         <p className='text-ellipsis overflow-hidden'>{renderLabel(element)}</p>
                       </div>
                       <p
+                        // Remove the element
                         onClick={(e) => {
                           e.stopPropagation();
                           if (context.section) {
@@ -313,6 +333,7 @@ export const ColumnCard: FC<ColumnCardProps> = ({ column, columnIndex, sectionIn
                 )
               })}
             </Drop>
+            {/* A Button to add new element */}
             <Dropdown
               arrow={false}
               placement='bottom'
@@ -324,6 +345,7 @@ export const ColumnCard: FC<ColumnCardProps> = ({ column, columnIndex, sectionIn
                     const { Editor, ...element } = elementDefs;
                     const _section = cloneDeep(context.section);
                     _section.layout.children[columnIndex].children.push(element);
+                    // Updates the section with new element inside selected column. passes the elementId of the new element
                     context.updateSection(_section, [sectionIndex, columnIndex, column.children.length])
                   }
                 }

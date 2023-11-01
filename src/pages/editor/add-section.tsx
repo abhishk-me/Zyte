@@ -8,6 +8,8 @@ interface Props {
   onAddSection: (section: PageSection) => void
 }
 
+// opens a dialog to add new section. there are 6 predefined sections with their data in 'sectionTemplates'.
+
 export const AddSection: FC<Props> = ({ onAddSection }) => {
   const [popoverOpen, setPopoverOpen] = useState(false)
   return (

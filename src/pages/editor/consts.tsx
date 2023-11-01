@@ -73,6 +73,203 @@ export interface SectionTemplate {
 
 export const sectionTemplates: SectionTemplate[] = [
   {
+    name: "Header",
+    thumb: <svg width="100%" viewBox="0 0 325 188" className='opacity-60'>
+      <g id="Group_6" data-name="Group 6" transform="translate(-68 -66)">
+        <rect id="Rectangle_734" data-name="Rectangle 734" width="325" height="188" transform="translate(68 66)" fill="none" />
+        <g id="Rectangle_725" data-name="Rectangle 725" transform="translate(70 134)" fill="rgba(255,255,255,0.26)" stroke="#fff" stroke-width="3">
+          <rect width="321" height="52" rx="13" stroke="none" />
+          <rect x="1.5" y="1.5" width="318" height="49" rx="11.5" fill="none" />
+        </g>
+        <path id="Icon_awesome-image" data-name="Icon awesome-image" d="M31.391,30.479H3.247A3.247,3.247,0,0,1,0,27.231V7.747A3.247,3.247,0,0,1,3.247,4.5H31.391a3.247,3.247,0,0,1,3.247,3.247V27.231A3.247,3.247,0,0,1,31.391,30.479ZM7.577,8.289a3.789,3.789,0,1,0,3.789,3.789A3.789,3.789,0,0,0,7.577,8.289ZM4.33,26.149H30.309V18.572l-5.921-5.921a.812.812,0,0,0-1.148,0l-9.168,9.168-3.756-3.756a.812.812,0,0,0-1.148,0L4.33,22.9Z" transform="translate(86.181 142.511)" fill="#fff" />
+        <rect id="Rectangle_742" data-name="Rectangle 742" width="38" height="12" rx="2" transform="translate(254 154)" fill="#fff" />
+        <rect id="Rectangle_743" data-name="Rectangle 743" width="28" height="12" rx="2" transform="translate(300 154)" fill="#fff" />
+        <rect id="Rectangle_744" data-name="Rectangle 744" width="38" height="12" rx="2" transform="translate(336 154)" fill="#fff" />
+      </g>
+    </svg>
+    ,
+    section: {
+      "layout": {
+        "styles": {
+          "containerType": "FULL_WIDTH",
+          "background": "#171717",
+          "padding": [
+            0,
+            20,
+            0,
+            20
+          ]
+        },
+        "displayName": "Header",
+        "children": [
+          {
+            "props": {
+              "width": 1
+            },
+            "styles": {
+              "borderColor": "#121212",
+              "borderWidth": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "borderStyle": "solid",
+              "justify": "center",
+              "padding": [
+                10,
+                0,
+                10,
+                0
+              ]
+            },
+            "children": [
+              {
+                "name": Elements.IMAGE,
+                "props": {
+                  "type": "Base",
+                  "image": {
+                    "id": "xQK7ccVZ9jYlJi4IlH8fj",
+                    "url": "https://logowik.com/content/uploads/images/697_nike.jpg",
+                    "meta": {}
+                  },
+                  "styles": {
+                    "width": 50,
+                    "widthType": "PIXELS",
+                    "borderColor": "#000",
+                    "borderStyle": "solid",
+                    "borderWidth": [
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "height": 100,
+                    "heightType": "AUTO"
+                  }
+                },
+                "displayName": "Image"
+              }
+            ]
+          },
+          {
+            "props": {
+              "width": 1
+            },
+            "styles": {
+              "borderColor": "#000",
+              "borderWidth": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "borderStyle": "solid",
+              "background": "",
+              "padding": [
+                10,
+                0,
+                10,
+                0
+              ],
+              "justify": "center",
+              "maxWidth": 3,
+              "horizontalAlign": "right"
+            },
+            "children": [
+              {
+                "name": Elements.BUTTONS,
+                "props": {
+                  "type": "Button",
+                  "gap": 4,
+                  "buttons": [
+                    {
+                      "text": "Men",
+                      "borderColor": "#000",
+                      "borderWidth": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "borderStyle": "solid",
+                      "background": "#171717",
+                      "color": "#ffffff",
+                      "textAlign": "center",
+                      "width": 180,
+                      "widthType": "AUTO",
+                      "padding": [
+                        8,
+                        6,
+                        8,
+                        6
+                      ],
+                      "fontSize": 16,
+                      "fontWeight": 500
+                    },
+                    {
+                      "text": "Women",
+                      "borderColor": "#000",
+                      "borderWidth": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "borderStyle": "solid",
+                      "background": "#171717",
+                      "color": "#ffffff",
+                      "textAlign": "center",
+                      "width": 180,
+                      "widthType": "AUTO",
+                      "padding": [
+                        8,
+                        6,
+                        8,
+                        6
+                      ],
+                      "fontSize": 16,
+                      "fontWeight": 500
+                    },
+                    {
+                      "text": "Unisex",
+                      "borderColor": "#000",
+                      "borderWidth": [
+                        0,
+                        0,
+                        0,
+                        0
+                      ],
+                      "borderStyle": "solid",
+                      "background": "#171717",
+                      "color": "#ffffff",
+                      "textAlign": "center",
+                      "width": 180,
+                      "widthType": "AUTO",
+                      "padding": [
+                        8,
+                        6,
+                        8,
+                        6
+                      ],
+                      "fontSize": 16,
+                      "fontWeight": 500
+                    }
+                  ],
+                  "align": "right"
+                },
+                "displayName": "Buttons"
+              }
+            ]
+          }
+        ],
+        "props": {
+          "type": LayoutType.COLUMNS
+        }
+      }
+    }
+  },
+  {
     name: "Image and text",
     thumb: <svg width="100%" viewBox="0 0 325 188" className='opacity-60'>
       <g id="Group_1" data-name="Group 1" transform="translate(-68 -66)">

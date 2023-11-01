@@ -9,17 +9,25 @@ interface Props {
   page: PageDataType
 }
 export const Chart: FC<Props> = ({ data, page }) => {
-  let pageViewWeeklyData = [{ day: "Mon", count: 0 }, { day: "Tue", count: 0 }, { day: "Wed", count: 0 }, { day: "Thu", count: 0 }, { day: "Fri", count: 0 }, { day: "Sat", count: 0 }];
-  let clicksWeeklyData = [{ day: "Mon", count: 0 }, { day: "Tue", count: 0 }, { day: "Wed", count: 0 }, { day: "Thu", count: 0 }, { day: "Fri", count: 0 }, { day: "Sat", count: 0 }];
+  // initialize page view data for a week
+  let pageViewWeeklyData = [{ day: "Mon", count: 0 }, { day: "Tue", count: 0 }, { day: "Wed", count: 0 }, { day: "Thu", count: 0 }, { day: "Fri", count: 0 }, { day: "Sat", count: 0 }, { day: "Sun", count: 0 }];
+  // initialize clicks data for a week
+  let clicksWeeklyData = [{ day: "Mon", count: 0 }, { day: "Tue", count: 0 }, { day: "Wed", count: 0 }, { day: "Thu", count: 0 }, { day: "Fri", count: 0 }, { day: "Sat", count: 0 }, { day: "Sun", count: 0 }];
+
   const dateLastWeek = DateTime.now().startOf("day").minus({ days: 7 });
+
+  //filter page view events for last week
   const pageViewEvents = data.filter((d, i) => d.event === PageEvent.PAGE_VIEW && DateTime.fromISO(d.createdAt).startOf("day") > dateLastWeek);
+  //set page view count by days
   for (let i = 0; i < pageViewEvents.length; i++) {
     const record = pageViewEvents[i];
     const weekDay = DateTime.fromISO(record.createdAt).weekday - 1;
     pageViewWeeklyData[weekDay].count += 1;
   }
 
+  //filter page view events for last week
   const clickEvents = data.filter((d, i) => d.event === PageEvent.CLICK && DateTime.fromISO(d.createdAt).startOf("day") > dateLastWeek);
+  //set page view count by days
   for (let i = 0; i < clickEvents.length; i++) {
     const record = clickEvents[i];
     const weekDay = DateTime.fromISO(record.createdAt).weekday - 1;
@@ -28,6 +36,7 @@ export const Chart: FC<Props> = ({ data, page }) => {
 
   const today = DateTime.now().weekday - 1;
 
+  // generate data for chart
   const chartData = [{
     id: "Page view",
     color: "red",

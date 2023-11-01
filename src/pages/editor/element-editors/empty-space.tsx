@@ -3,6 +3,7 @@ import { ElementEditorProps, BaseElementProps, Elements } from '../types';
 import { HeightWidth } from '../../../components/style-editors/height-width';
 import { ElementIconMap } from '../consts';
 
+// Editor for empty-space. 
 export const EmptySpaceEditor: FC<ElementEditorProps<BaseElementProps>> = ({ data, onChange }) => {
   const { styles } = data;
   return (

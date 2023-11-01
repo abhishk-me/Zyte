@@ -37,11 +37,16 @@ export const PageEditor: FC = () => {
   const iFrameChildRef = useRef<Postmate.ParentAPI>();
   const [editorState, setEditorState] = useImmer<{
     page: PageDataType,
-    selectedElementId: number[],
+    selectedElementId: number[], //each element has and ID - [ sectionIndex, columnIndex, elementIndex]
   }>({
     page: pageDataInitial,
     selectedElementId: []
   });
+
+  // The page editor consists of three view pans - Left, middle, right.
+  // LEFT PAN show list of sections. and when section is selected, it shows list of columns and elements inside. 
+  // MIDDLE PAN renders the landing page.
+  // RIGHT PAN shows the element editors to change data and styles.
   const [leftPanView, setLeftPanView] = useState<LeftPanView>(LeftPanView.SECTIONS);
 
   const { mutate: updatePageMutation, loading: updaetingPage } = useMutation(editorApi.updatePage, {
@@ -50,6 +55,7 @@ export const PageEditor: FC = () => {
     },
   });
 
+  // fetches page data and initiates handshake with the iframe.
   const { loading: fetchingPageData, query: getPageData } = useQuery(editorApi.getPage, {
     onSuccess: ({ data }) => {
       setEditorState((draft) => {
@@ -65,10 +71,12 @@ export const PageEditor: FC = () => {
         handshakeRef.current = handshake;
         handshake.then(child => {
           iFrameChildRef.current = child
+          // When landing page is mounted, it requests for the data.
           child.on('FETCH_DATA', () => {
             child.call("setData", data);
             iFrameChildRef.current?.call("toggleInspector", true)
           });
+          // when an element is selected form the page, it highlights the element on the left pan and opens the style editor for the element on the right.
           child.on("SELECT_ELEMENT", (id: string) => {
             leftPanView !== LeftPanView.CONTAINER && setLeftPanView(LeftPanView.CONTAINER)
             setEditorState((draft) => {
@@ -90,6 +98,7 @@ export const PageEditor: FC = () => {
     }
   }, [pageId]);
 
+  // sends data to the landing page when changes are made
   useEffect(() => {
     iFrameChildRef.current?.call("setData", editorState.page);
   }, [editorState.page])
@@ -120,6 +129,7 @@ export const PageEditor: FC = () => {
           </Popconfirm>
         </div>
         <div className='flex flex-1 justify-center items-center'>
+          {/* Switch views between - mobile, desktop and wide screen preview */}
           <SegmentedTab
             bg='rgba(0,0,0,0.1)'
             value={view}
@@ -169,16 +179,18 @@ export const PageEditor: FC = () => {
       </div>
       <div className='w-full h-screen flex flex-row relative'>
         <div className={`h-full pt-14 w-[260px] bg-[#18181a] z-30 transition-transform duration-300 flex flex-col ${panelHidden ? 'translate-x-[-260px]' : 'translate-x-0'}`} >
-          {/* <SectionList /> */}
+          {/* Display section list on the left pan */}
           {leftPanView === LeftPanView.SECTIONS &&
             <SectionList
               selectedElementId={editorState.selectedElementId}
               page={editorState.page}
+              // On change is tiggered when you - add new section, delete a section, or rearrange the sections.
               onChange={(_page) => {
                 setEditorState((draft) => {
                   draft.page = _page;
                 });
               }}
+              // when a section is selected. the left pan will display the columns and elements inside.
               onSelect={(id) => {
                 iFrameChildRef.current?.call("focusElement", id.join("_"))
                 setEditorState((draft) => {
@@ -187,10 +199,12 @@ export const PageEditor: FC = () => {
                 setLeftPanView(LeftPanView.CONTAINER)
               }}
             />}
+          {/* When a section is selected, left pan shows section's content */}
           {leftPanView === LeftPanView.CONTAINER && !!editorState.selectedElementId.length &&
             <SectionEditor
               selectedElementId={editorState.selectedElementId}
               section={editorState.page.sections[editorState.selectedElementId[0]]}
+              // onChange is triggered when you - add/remove/rearrange columns, add/remove/rearrange elements, change section styles
               onChange={(section, selectedElementId) => {
                 iFrameChildRef.current?.call("focusElement", selectedElementId.join("_"))
                 setEditorState((draft) => {
@@ -198,6 +212,7 @@ export const PageEditor: FC = () => {
                   draft.page.sections[editorState.selectedElementId[0]] = section;
                 });
               }}
+              // When you go back to section list
               onExit={() => {
                 setLeftPanView(LeftPanView.SECTIONS);
                 setEditorState((draft) => {
@@ -209,9 +224,11 @@ export const PageEditor: FC = () => {
         </div >
         <div className='flex flex-col flex-1' ></div>
         <div className={`h-full w-[260px] pt-14 pb-20 bg-[#18181a] text-white z-30 transition-transform duration-300 overflow-y-auto scrollbar-hide text-sm ${panelHidden ? 'translate-x-[260px]' : 'translate-x-0'}`}>
+          {/* Element editor appears on the right pan when an element is selected */}
           <ElementEditorPan
             page={editorState.page}
             elementId={editorState.selectedElementId}
+            // when you make any changes to the element. it saves the data.
             onChange={(page) => {
               setEditorState((draft) => {
                 draft.page = page;
@@ -226,6 +243,7 @@ export const PageEditor: FC = () => {
               opacity: 1
             }}
           >
+            {/* Iframe element. renders the landing page */}
             <div
               ref={iFrameContainerRef}
               className={` bg-white

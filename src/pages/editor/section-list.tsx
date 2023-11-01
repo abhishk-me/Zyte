@@ -13,6 +13,7 @@ interface SectioListProps {
   onSelect: (selectedElementId: number[]) => void
 }
 
+// displays the list of sections
 export const SectionList: FC<SectioListProps> = ({ selectedElementId, page, onChange, onSelect }) => {
 
   const handleDragEnd = (result: DropResult) => {
@@ -37,6 +38,7 @@ export const SectionList: FC<SectioListProps> = ({ selectedElementId, page, onCh
       <div className='py-4 px-4 flex flex-col flex-1 text-white overflow-auto'>
         <div className='flex items-center mb-6 mt-2'>
           <p className='font-bold text-xl px-1 flex flex-1'>Sections</p>
+          {/* opens a dialog to add new section */}
           <AddSection onAddSection={(sec) => {
             const _page = cloneDeep(page);
             _page.sections.push(sec);

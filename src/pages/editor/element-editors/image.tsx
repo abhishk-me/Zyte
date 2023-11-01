@@ -8,6 +8,7 @@ import { HeightWidth } from '../../../components/style-editors/height-width';
 import { TextAlign } from '../../../components/style-editors/text-align';
 import { Image } from 'react-feather';
 
+// Editor for Image element. 
 export const ImageWidgetEditor: FC<ElementEditorProps<BaseElementProps>> = ({ data, onChange }) => {
   const { styles } = data;
   const updateStyles = (_styles: CommonStyles) => {

@@ -27,6 +27,8 @@ export interface PageSection {
   layout: Container;
 }
 
+// common styles, used on containers, columns and elements. 
+// All properties are optional so, different elements can use different propertirs based on their type.
 export interface CommonStyles {
   padding?: number[];
   opacity?: number;
@@ -58,6 +60,7 @@ export interface CommonStyles {
 
 export type HeightWidthType = "FULL" | "AUTO" | "PIXELS" | "PERCENTAGE" | "RELATIVE"
 
+// Container types
 export interface Container {
   props: ContainerProps;
   styles: CommonStyles;
@@ -77,6 +80,8 @@ export enum LayoutType {
   COLUMNS = "COLUMNS",
 }
 
+
+// Column types
 export interface Column {
   props: ColumnProps;
   styles: CommonStyles;
@@ -88,6 +93,7 @@ export interface ColumnProps {
   width: number
 }
 
+// Base props for simple elements like - text, image, empty-space
 export type BaseElementProps = {
   type: "Base";
   styles: CommonStyles;
@@ -102,7 +108,7 @@ export enum Elements {
   EMPTY_SPACE = "EMPTY_SPACE",
 }
 
-
+// for button group
 export type ButtonGroupProps = {
   type: "Button";
   gap: number;
@@ -148,22 +154,15 @@ export const linkInitial: LinkType = {
   displayName: ""
 }
 
+// Header props
 export interface HeaderProps {
   background: string;
   color: string;
   borderColor?: string;
-  loaderColor?: string;
   logo?: ImageType;
-  buttonColor?: string;
-  buttonTextColor?: string;
-  buttonBorderColor?: string;
-  headerSize?: number;
-  helloBar?: boolean;
-  helloBarText?: string[];
-  helloBarBg?: string;
-  helloBarColor?: string
 }
 
+// Footer props
 export interface FooterProps {
   background: string;
   color: string;
@@ -174,11 +173,13 @@ export interface FooterProps {
   }[];
 }
 
+// Each element has it's own editor. the editor takes the element's data and an onChange function as props
 export interface ElementEditorProps<D> {
   data: D
   onChange: (data: D) => void
 }
 
+// Element definition has the element to editor mapping with the elements data. 
 export interface ElementDefType<D> {
   props: D;
   displayName: string;
@@ -187,8 +188,10 @@ export interface ElementDefType<D> {
   Editor: React.FC<ElementEditorProps<D>>
 }
 
+// element;s data that gets saved. whis is element's def minus the editor
 export type Element = Omit<ElementDefs, 'Editor'>;
 
 export type ElementDefs = ElementDefType<ElementProps>
 
+// ElementProps can be of any of the element.
 export type ElementProps = BaseElementProps | ButtonGroupProps
