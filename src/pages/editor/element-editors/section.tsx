@@ -158,7 +158,6 @@ export const SectionEditor: FC<Props> = ({ section, onChange, onExit, selectedEl
               className='mt-4 h-10'
             >Add Column</Button>
           }
-          <Button onClick={() => console.log(section)}>log</Button>
           {/* Section style editors */}
           <div className='p-3 pb-2 mt-16 text-sm border border-light-5 rounded-xl'>
             <label htmlFor='SECTION_STYLE_TOGGLE' className='pt-1 pb-2 flex items-center cursor-pointer opacity-60'>
