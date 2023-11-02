@@ -52,7 +52,7 @@ export const AddNewPageButton: FC<Props> = () => {
     let _sections: PageSection[] = [];
     _sections.push(sectionTemplates[0].section);
     for (let i = 0; i < noOfSections - 1; i++) {
-      const _section = sectionTemplates[Math.floor(Math.random() * 5)].section;
+      const _section = sectionTemplates[Math.floor((Math.random() * (sectionTemplates.length - 2)) + 1)].section;
       _sections.push(_section);
     }
     return _sections
@@ -182,6 +182,7 @@ export const AddNewPageButton: FC<Props> = () => {
                 </Field>
                 <div className="my-4"></div>
                 <Button
+                  loading={creatingPage}
                   htmlType='submit'
                   type='primary'
                   className='w-full mt-4 h-10'
