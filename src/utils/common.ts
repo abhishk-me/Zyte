@@ -12,5 +12,5 @@ export const getUrl = (pageId: string) => {
     return `http://localhost:4444/pages/${pageId}`
   }
 
-  return `https://fibr-landing-page.vercel.app/pages/${pageId}`;
+  return `https://zyte-page.vercel.app/pages/${pageId}`;
 }
